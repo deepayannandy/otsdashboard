@@ -4,6 +4,7 @@ import {SiShopware} from 'react-icons/si';
 import {MdOutlineCancel} from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useStateContext } from '../contexts/ContextProvider';
+import clientlogo from '../data/clientlogo.png';
 
 import {links} from '../data/dummy';
 const Sidebar = () => {
@@ -16,7 +17,12 @@ const Sidebar = () => {
         activeMenu && (<>
         <div className='flex justify-between items-center'>  
             <Link to="/" onClick={()=>setActiveMenu(false)} className="items-center gap-3 ml-3 mt-4 flex text-xl tracking-tighter font-extrabold text-slate-900">
-                <SiShopware className='text-3xl text-green-900'/><span className='text-green-900'>PocSof</span>
+                {/* <SiShopware className='text-3xl text-green-900'/><span className='text-green-900'>PocSof</span> */}
+                <img
+              className="w-60 h-25"
+              src={clientlogo}
+              alt="user-profile"
+            />
             </Link>
             <TooltipComponent content="Menu" position='BottomCenter'>
                 <button type="button" onClick={()=>setActiveMenu(false)} className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block ">

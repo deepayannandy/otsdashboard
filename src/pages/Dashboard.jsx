@@ -3,10 +3,11 @@ import { BsCurrencyDollar } from 'react-icons/bs';
 import {GoPrimitiveDot} from 'react-icons/go';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
 
-import {Stacked,Pie, Button,  SparkLine} from "../componets";
-import { earningData, SparklineAreaData,stackedChartData } from '../data/dummy';
+import {Stacked,Pie, Button,  SparkLine, Footer, Chart} from "../componets";
+import { earningData, SparklineAreaData,stackedChartData,ecomPieChartData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 import axios, { Axios } from 'axios';
+import moment from "moment";
 
 
 const Dashboard = () => {
@@ -27,7 +28,7 @@ const Dashboard = () => {
   const[data,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("/api/user/dashboardUserState/get",).then((response)=>{
+    axios.get("http://54.160.215.70:6622/api/user/dashboardUserState/get",).then((response)=>{
       console.log(response);
       setData(response.data);
     })
@@ -39,11 +40,13 @@ useEffect(()=>{
     <div className='mt-5'>
       <div className='flex flex-wrap  justify-center'>
         <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-screen p-8 pt-9 m-3  bg-no-repeat bg-cover bg-center bg-hero-pattern'>
-          <div className='justify-between flex items-center m-4'>
+          <div className='flex items-center m-4'>
             <div>
-              <p className='font-bold text-gray-400'>Total number of users</p>
-              <p className='font-bold text-green-800 text-2xl'>{data.totaluser}</p>
+              <p className='font-bold text-gray-400'>Today, date_create: {moment().format("MM-DD-YYYY")}</p>
+              <p className='font-bold text-gray-400'>Total Employee Count</p>
+              <p className='font-bold text-green-800 text-3xl'>{data.totaluser}</p>
             </div>
+            
           </div>
         </div>
 
@@ -54,7 +57,7 @@ useEffect(()=>{
               className="bg-white w-60 p-4 pt-9 rounded-2xl">
               <button
                 type="button"
-                style={{ color: "rgb(83, 3, 156)", backgroundColor: "rgb(210, 161, 255)"}}
+                style={{ color: "white", backgroundColor: "rgb(225, 145, 77)"}}
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
                 <MdOutlineSupervisorAccount/>
@@ -64,6 +67,9 @@ useEffect(()=>{
                 <span className="text-2xl font-semibold">{data.branch1}</span>
                 
               </p>
+              <p className="">
+              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch1_active}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch1-data.branch1_active)}</span></span>
+              </p>
               <p className="text-sm text-gray-400  mt-1">{"Pasadena, TX 77506"}</p>
             </div>
 
@@ -71,7 +77,7 @@ useEffect(()=>{
               className="bg-white w-60 p-4 pt-9 rounded-2xl">
               <button
                 type="button"
-                style={{ color: "rgb(83, 3, 156)", backgroundColor: "rgb(210, 161, 255)"}}
+                style={{ color: "white", backgroundColor: "rgb(148, 116, 67)"}}
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
                 <MdOutlineSupervisorAccount/>
@@ -81,6 +87,9 @@ useEffect(()=>{
                 <span className="text-2xl font-semibold">{data.branch3}</span>
                 
               </p>
+              <p className="">
+              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch3_active}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch3-data.branch3_active)}</span></span>
+              </p>
               <p className="text-sm text-gray-400  mt-1">{"Snyder, TX 79549"}</p>
             </div>
 
@@ -88,7 +97,7 @@ useEffect(()=>{
               className="bg-white w-60 p-4 pt-9 rounded-2xl">
               <button
                 type="button"
-                style={{ color: "rgb(83, 3, 156)", backgroundColor: "rgb(210, 161, 255)"}}
+                style={{ color: "white", backgroundColor: "rgb(103, 73, 162)"}}
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
                 <MdOutlineSupervisorAccount/>
@@ -98,6 +107,9 @@ useEffect(()=>{
                 <span className="text-2xl font-semibold">{data.branch2}</span>
                 
               </p>
+              <p className="">
+              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch2}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch2-data.branch2_active)}</span></span>
+              </p>
               <p className="text-sm text-gray-400  mt-1">{"Nederland, TX 77627"}</p>
             </div>
 
@@ -105,7 +117,7 @@ useEffect(()=>{
               className="bg-white w-60 p-4 pt-9 rounded-2xl">
               <button
                 type="button"
-                style={{ color: "rgb(83, 3, 156)", backgroundColor: "rgb(210, 161, 255)"}}
+                style={{ color: "white", backgroundColor: "rgb(109, 150, 173)"}}
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
                 <MdOutlineSupervisorAccount/>
@@ -115,6 +127,9 @@ useEffect(()=>{
                 <span className="text-2xl font-semibold">{data.branch4}</span>
                 
               </p>
+              <p className="">
+              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch4}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch4-data.branch4_active)}</span></span>
+              </p>
               <p className="text-sm text-gray-400  mt-1">{"Angleton, TX 77515"}</p>
             </div>
 
@@ -122,7 +137,7 @@ useEffect(()=>{
               className="bg-white w-60 p-4 pt-9 rounded-2xl">
               <button
                 type="button"
-                style={{ color: "rgb(83, 3, 156)", backgroundColor: "rgb(210, 161, 255)"}}
+                style={{ color: "white", backgroundColor: "rgb(151, 42, 40)"}}
                 className="text-2xl opacity-0.9 rounded-full  p-4 hover:drop-shadow-xl"
               >
                 <MdOutlineSupervisorAccount/>
@@ -132,90 +147,43 @@ useEffect(()=>{
                 <span className="text-2xl font-semibold">{data.branch5}</span>
                 
               </p>
+              <p className="">
+              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch5}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch5-data.branch5_active)}</span></span>
+              </p>
               <p className="text-sm text-gray-400  mt-1">{"Port Lavaca, TX 77979"}</p>
             </div>
         
-        </div>
+        </div>  
+
 
         
-      
-            <div className="flex gap-10 flex-wrap justify-center">
-        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780  ">
-          <div className="flex justify-between">
-            <p className="font-semibold text-xl">OnBoarding Updates</p>
-            <div className="flex items-center gap-4">
-              <p className="flex items-center gap-2 text-gray-600 hover:drop-shadow-xl">
-                <span>
-                  <GoPrimitiveDot />
-                </span>
-                <span>Registered</span>
-              </p>
-              <p className="flex items-center gap-2 text-green-400 hover:drop-shadow-xl">
-                <span>
-                  <GoPrimitiveDot />
-                </span>
-                <span>Approved</span>
-              </p>
-            </div>
-          </div>
-          <div className="mt-10 flex gap-10 flex-wrap justify-center">
-            <div className=" border-r-1 border-color m-4 pr-10">
-              <div>
-                <p>
-                  <span className="text-3xl font-semibold">{data.active}</span>
-                  <span className="p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs">
-                    {(data.active/data.totaluser)*100}%
-                  </span>
-                </p>
-                <p className="text-gray-500 mt-1">Approved users</p>
-              </div>
-              <div className="mt-8">
-                <p className="text-3xl font-semibold">{data.totaluser}</p>
-
-                <p className="text-gray-500 mt-1">Registered users</p>
-              </div>
-
-              <div className="mt-5">
-                <SparkLine currentColor="green" id="line-sparkLine" type="Line" height="80px" width="250px" data={SparklineAreaData} color="green" />
-              </div>
-              <div className="mt-10">
-                {/* <Button
-                  color="white"
-                  bgColor="green"
-                  text="Download Report"
-                  borderRadius="10px"
-                /> */}
-              </div>
-            </div>
-            <div>
-              <Stacked currentMode='Light' width="320px" height="360px" />
-            </div>
-          </div>
-        </div>
+              
+       
+        
         <div>
           <div
-            className=" rounded-2xl md:w-400 p-4 m-3"
+            className=" rounded-2xl md:w-400 p-10 m-3"
             style={{ backgroundColor: "green" }}
           >
             <div className="flex justify-between items-center ">
-              <p className="font-semibold text-white text-2xl">Earnings</p>
+              <p className="font-semibold text-white text-2xl">Daily Onbording Status</p>
 
-              <div>
-                <p className="text-2xl text-white font-semibold mt-8">$63,448.78</p>
-                <p className="text-gray-200">Monthly revenue</p>
-              </div>
+            <div>
+              <p className="text-2xl text-white font-semibold mt-8">{moment().format("MM/DD/YYYY")}</p>
+              
+            </div>
             </div>
 
             <div className="mt-4">
-              <SparkLine currentColor="green" id="column-sparkLine" height="100px" type="Column" data={SparklineAreaData} width="320" color="rgb(242, 252, 253)" />
+              <Chart currentColor="green" id="column-sparkLine" height="200px" type="Column" data={SparklineAreaData} width="320" color="rgb(242, 252, 253)" />
             </div>
           </div>
 
             </div>
+            
         </div>
-
       </div>
-    </div>
+    
   )
 }
 

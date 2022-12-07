@@ -1,7 +1,7 @@
 {
   "name": "project_pocsof_dashboard",
   "version": "0.1.0",
-  "proxy":"http://54.160.215.70:6622/",
+  "proxy": "",
   "private": true,
   "dependencies": {
     "@syncfusion/ej2": "^19.4.48",
@@ -15,9 +15,11 @@
     "@syncfusion/ej2-react-richtexteditor": "^19.4.50",
     "@syncfusion/ej2-react-schedule": "^19.4.50",
     "axios": "^1.2.0",
+    "moment": "^2.29.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-moment": "^1.1.2",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0"
   },

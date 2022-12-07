@@ -3095,14 +3095,14 @@ export const ordersGrid = [
 //   },
 // ];
 export const SparklineAreaData = [
-  { x: 1, yval: 10 },
-  { x: 2, yval: 90 },
-  { x: 3, yval: 200 },
-  { x: 4, yval: 333 },
-  { x: 5, yval: 99 },
-  { x: 6, yval: 55 },
-  { x: 7, yval: 102 },
+  { x: 1,xval:"HOU" ,yval: 3 },
+  { x: 2,xval:"SNY", yval: 2 },
+  { x: 3,xval:"NED", yval: 1 },
+  { x: 4,xval:"ANG", yval: 1 },
+  { x: 5,xval:"PLV" ,yval: 2 },
 ];
+
+
 
 // export const lineCustomSeries = [
 //   { dataSource: lineChartData[0],
@@ -3160,12 +3160,13 @@ export const contextMenuItems = [
   'NextPage',
 ];
 
-// export const ecomPieChartData = [
-//   { x: '2018', y: 18, text: '35%' },
-//   { x: '2019', y: 18, text: '15%' },
-//   { x: '2020', y: 18, text: '25%' },
-//   { x: '2021', y: 18, text: '25%' },
-// ];
+export const ecomPieChartData = [
+  { x: 'HOU', y: 18, text: '11' },
+  { x: 'SNY', y: 18, text: '7' },
+  { x: 'NED', y: 18, text: '20' },
+  { x: 'ANG', y: 18, text: '5' },
+  { x: 'PLV', y: 18, text: '3' },
+];
 
 export const stackedChartData = [
   [

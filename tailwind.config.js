@@ -40,7 +40,7 @@ module.exports = {
         },
         backgroundImage: {
           'hero-pattern':
-            "url('https://firebasestorage.googleapis.com/v0/b/ots-pocket.appspot.com/o/projectFiles%2Fwelcome-bg.svg?alt=media&token=5dd63bba-92fe-4894-bf38-8d9b1b2bae3e')",
+            "url('https://firebasestorage.googleapis.com/v0/b/ots-pocket.appspot.com/o/projectFiles%2Fhero.png?alt=media&token=ac3bfc69-7096-4c38-b603-2974d5eca03a')",
         },
       },
     },

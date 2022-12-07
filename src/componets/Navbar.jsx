@@ -5,7 +5,7 @@ import { BsChatLeft } from 'react-icons/bs';
 import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-import avatar from '../data/PocSof.png';
+import avatar from '../data/clientavatar.png';
 
 import { useStateContext } from '../contexts/ContextProvider';
 

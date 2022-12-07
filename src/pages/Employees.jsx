@@ -12,7 +12,7 @@ const Employees = () => {
   const[employeedata,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("/api/user/dashboardUserState/getall",).then((response)=>{
+    axios.get("http://54.160.215.70:6622/api/user/dashboardUserState/getall",).then((response)=>{
       console.log(response);
       setData(response.data);
     })
