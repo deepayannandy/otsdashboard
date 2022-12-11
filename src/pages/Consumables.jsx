@@ -12,7 +12,7 @@ const Consumables = () => {
   const[equipmentdata,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("https://54.160.215.70:3443/api/consumeables/dashboardConsumable/getall",).then((response)=>{
+    axios.get("https://dnyindia.in/api/consumeables/dashboardConsumable/getall",).then((response)=>{
       console.log(response);
       setData(response.data);
     })

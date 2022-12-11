@@ -12,7 +12,7 @@ const Employees = () => {
   const[employeedata,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("https://54.160.215.70:3443/api/user/dashboardUserState/getall",).then((response)=>{
+    axios.get("https://dnyindia.in/api/user/dashboardUserState/getall",).then((response)=>{
       console.log(response);
       setData(response.data);
     })

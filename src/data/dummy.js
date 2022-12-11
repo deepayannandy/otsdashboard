@@ -974,7 +974,7 @@ export const  consumableGrid= [
     editType: 'dropdownedit',
     textAlign: 'Center',
   },
-  { field: 'availableQnt',
+  { field: 'stockQnt',
     headerText: 'Available',
     width: '150',
     textAlign: 'Center',
