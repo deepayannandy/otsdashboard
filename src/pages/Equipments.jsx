@@ -12,7 +12,7 @@ const Equipments = () => {
   const[equipmentdata,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("https://localhost:3443/api/equipements/dashboardEquipment/getall",).then((response)=>{
+    axios.get("https://54.160.215.70:3443/api/equipements/dashboardEquipment/getall",).then((response)=>{
       console.log(response);
       setData(response.data);
     })

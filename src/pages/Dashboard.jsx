@@ -17,7 +17,7 @@ const Dashboard = () => {
   const[todaysdata,settodaysData]=useState("")
   const gettodaysdata= ()=>
   {
-    axios.get("https://localhost:3443/api/user/dashboardUserState/get/"+today).then((response)=>{
+    axios.get("https://54.160.215.70:3443/api/user/dashboardUserState/get/"+today).then((response)=>{
       console.log(response);
       settodaysData(response.data);
     })
@@ -29,7 +29,7 @@ const Dashboard = () => {
   const[data,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("https://localhost:3443/api/user/dashboardUserState/get",
+    axios.get("https://54.160.215.70:3443/api/user/dashboardUserState/get",
     ).then((response)=>{
       console.log(response);
       setData(response.data);
