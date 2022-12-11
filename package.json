@@ -1,7 +1,8 @@
 {
   "name": "project_pocsof_dashboard",
   "version": "0.1.0",
-  "proxy": "",
+  "proxy":"",
+  "homepage": "https://ot-software.com/pocsof/clients/tier1integrity",
   "private": true,
   "dependencies": {
     "@syncfusion/ej2": "^19.4.48",

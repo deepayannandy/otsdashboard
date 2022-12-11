@@ -10,25 +10,27 @@ import axios, { Axios } from 'axios';
 import moment from "moment";
 
 
+const today=moment().format("YYYY-MM-DD")
 const Dashboard = () => {
   console.log("hi");
   
-  // const fetchAPIData=async(url)=>{
-  //   try{
-  //     const res= await fetch(url)
-  //     const data= await res.json();
-  //     console.log(data);
-  //   }catch(error){
-  //     console.log(error);
-      
-  //   }
-  // }
+  const[todaysdata,settodaysData]=useState("")
+  const gettodaysdata= ()=>
+  {
+    axios.get("https://localhost:3443/api/user/dashboardUserState/get/"+today).then((response)=>{
+      console.log(response);
+      settodaysData(response.data);
+    })
+  }
+  useEffect(()=>{
+    gettodaysdata()
+  },[])
 
-  
   const[data,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("http://54.160.215.70:6622/api/user/dashboardUserState/get",).then((response)=>{
+    axios.get("https://localhost:3443/api/user/dashboardUserState/get",
+    ).then((response)=>{
       console.log(response);
       setData(response.data);
     })
@@ -108,7 +110,7 @@ useEffect(()=>{
                 
               </p>
               <p className="">
-              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch2}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch2-data.branch2_active)}</span></span>
+              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch2_active}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch2-data.branch2_active)}</span></span>
               </p>
               <p className="text-sm text-gray-400  mt-1">{"Nederland, TX 77627"}</p>
             </div>
@@ -128,7 +130,7 @@ useEffect(()=>{
                 
               </p>
               <p className="">
-              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch4}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch4-data.branch4_active)}</span></span>
+              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch4_active}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch4-data.branch4_active)}</span></span>
               </p>
               <p className="text-sm text-gray-400  mt-1">{"Angleton, TX 77515"}</p>
             </div>
@@ -148,7 +150,7 @@ useEffect(()=>{
                 
               </p>
               <p className="">
-              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch5}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch5-data.branch5_active)}</span></span>
+              <span className="text-gray-400 font-semibold mr-1">Approved: <span className='text-green-900 text-2xl'>{data.branch5_active}</span> Pending: <span className='text-red-900 text-2xl'>{(data.branch5-data.branch5_active)}</span></span>
               </p>
               <p className="text-sm text-gray-400  mt-1">{"Port Lavaca, TX 77979"}</p>
             </div>
@@ -175,7 +177,7 @@ useEffect(()=>{
             </div>
 
             <div className="mt-4">
-              <Chart currentColor="green" id="column-sparkLine" height="200px" type="Column" data={SparklineAreaData} width="320" color="rgb(242, 252, 253)" />
+              <Chart currentColor="green" id="column-sparkLine" height="200px" type="Column" data={todaysdata} width="320" color="rgb(242, 252, 253)" />
             </div>
           </div>
 

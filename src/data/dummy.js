@@ -2,12 +2,12 @@ import React from 'react';
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
-import { BiColorFill } from 'react-icons/bi';
+import { IoMdConstruct } from 'react-icons/io';
 import { IoMdContacts } from 'react-icons/io';
 import {GrDocumentVerified} from 'react-icons/gr'
 import { RiContactsLine, RiStockLine } from 'react-icons/ri';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
-import { HiOutlineRefresh } from 'react-icons/hi';
+import { RiSurgicalMaskFill } from 'react-icons/ri';
 import { TiTick } from 'react-icons/ti';
 import { GiLouvrePyramid } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
@@ -489,12 +489,24 @@ export const links = [
         name: 'Users',
         icon: <IoMdContacts />,
       },
+      {
+        name: 'Customers',
+        icon: <RiContactsLine />,
+      },
       
     ],
   },
   {
     title: 'Project Management',
     links: [
+      {
+        name: 'equipments',
+        icon: <IoMdConstruct />,
+      },
+      {
+        name: 'consumables',
+        icon: <RiSurgicalMaskFill />,
+      },
       {
         name: 'PO',
         icon: <GrDocumentVerified />,
@@ -507,10 +519,7 @@ export const links = [
         name: 'Daily Time Sheet',
         icon: <AiOutlineCalendar />,
       },
-      {
-        name: 'customers',
-        icon: <RiContactsLine />,
-      },
+     
       // {
       //   name: 'editor',
       //   icon: <FiEdit />,
@@ -882,7 +891,7 @@ export const earningData = [
 //   },
 // ];
 
-export const ordersGrid = [
+export const userGrid = [
   // {
   //   headerText: 'Image',
   //   template: gridOrderImage,
@@ -929,6 +938,79 @@ export const ordersGrid = [
     width: '150',
     textAlign: 'Center',
   },
+];
+
+export const equipmentGrid = [
+  {
+    field: 'name',
+    headerText: 'Equipment Name',
+    width: '150',
+    editType: 'dropdownedit',
+    textAlign: 'Center',
+  },
+  { field: 'availableQnt',
+    headerText: 'Available',
+    width: '150',
+    textAlign: 'Center',
+  },
+  { field: 'dispatchQnt',
+    headerText: 'Dispatched',
+    width: '150',
+    textAlign: 'Center',
+  },
+  {
+    field: 'branchID',
+    headerText: 'Cost Center',
+    width: '120',
+    textAlign: 'Center',
+  },
+];
+
+export const  consumableGrid= [
+  {
+    field: 'name',
+    headerText: 'Equipment Name',
+    width: '150',
+    editType: 'dropdownedit',
+    textAlign: 'Center',
+  },
+  { field: 'availableQnt',
+    headerText: 'Available',
+    width: '150',
+    textAlign: 'Center',
+  },
+  { field: 'dispatchQnt',
+    headerText: 'Dispatched',
+    width: '150',
+    textAlign: 'Center',
+  },
+  {
+    field: 'branchID',
+    headerText: 'Cost Center',
+    width: '120',
+    textAlign: 'Center',
+  },
+];
+
+export const  customerGrid= [
+  {
+    field: 'Customer',
+    headerText: 'Customer Name',
+    width: '150',
+    editType: 'dropdownedit',
+    textAlign: 'Center',
+  },
+  { field: 'contact',
+    headerText: 'Contact',
+    width: '150',
+    textAlign: 'Center',
+  },
+  { field: 'addres',
+    headerText: 'Address',
+    width: '150',
+    textAlign: 'Center',
+  },
+  
 ];
 
 // export const customersData = [
