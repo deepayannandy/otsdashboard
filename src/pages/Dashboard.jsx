@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import {GoPrimitiveDot} from 'react-icons/go';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
-
 import {Stacked,Pie, Button,  SparkLine, Footer, Chart} from "../componets";
 import { earningData, SparklineAreaData,stackedChartData,ecomPieChartData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 import axios, { Axios } from 'axios';
 import moment from "moment";
+import { DatePickerComponent } from '@syncfusion/ej2-react-calendars';
 
 
 const today=moment().format("YYYY-MM-DD")
@@ -18,7 +18,7 @@ const Dashboard = () => {
   const gettodaysdata= ()=>
   {
     axios.get("https://dnyindia.in/api/user/dashboardUserState/get/"+today).then((response)=>{
-      console.log(response);
+
       settodaysData(response.data);
     })
   }
@@ -31,20 +31,20 @@ const Dashboard = () => {
   {
     axios.get("https://dnyindia.in/api/user/dashboardUserState/get",
     ).then((response)=>{
-      console.log(response);
       setData(response.data);
     })
   }
 useEffect(()=>{
   getdata()
 },[])
+let [selectedDate, setselectedDate] = useState(today);
   return (
     <div className='mt-5'>
       <div className='flex flex-wrap  justify-center'>
         <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-screen p-8 pt-9 m-3  bg-no-repeat bg-cover bg-center bg-hero-pattern'>
           <div className='flex items-center m-4'>
             <div>
-              <p className='font-bold text-gray-400'>Today, date_create: {moment().format("MM-DD-YYYY")}</p>
+              <p className='font-bold text-gray-400'>Today, {moment().format("YYYY-MM-DD")}</p>
               <p className='font-bold text-gray-400'>Total Employee Count</p>
               <p className='font-bold text-green-800 text-3xl'>{data.totaluser}</p>
             </div>
@@ -164,20 +164,26 @@ useEffect(()=>{
         
         <div>
           <div
-            className=" rounded-2xl md:w-400 p-10 m-3"
+            className=" rounded-2xl md:w-200 p-10 m-3"
             style={{ backgroundColor: "green" }}
           >
             <div className="flex justify-between items-center ">
-              <p className="font-semibold text-white text-2xl">Daily Onbording Status</p>
-
-            <div>
-              <p className="text-2xl text-white font-semibold mt-8">{moment().format("MM/DD/YYYY")}</p>
-              
+              <p className="font-semibold text-white text-2xl">Daily Onbording Status: {selectedDate} <DatePickerComponent width={1}  onChange={(date)=>{
+                console.log(date)
+                
+                const dateString=date.value.getUTCFullYear()+"-"+(date.value.getUTCMonth()+1)+"-"+date.value.getDate();
+                console.log(dateString);
+                setselectedDate(dateString);
+                axios.get("https://dnyindia.in/api/user/dashboardUserState/get/"+dateString).then((response)=>{
+                console.log(response);
+                settodaysData(response.data);
+              })
+              }
+                } ></DatePickerComponent></p>
             </div>
-            </div>
-
+            
             <div className="mt-4">
-              <Chart currentColor="green" id="column-sparkLine" height="200px" type="Column" data={todaysdata} width="320" color="rgb(242, 252, 253)" />
+              <Chart currentColor="green" id="column-sparkLine" height="200px" type="Column" data={todaysdata} width="400" color="rgb(242, 252, 253)" />
             </div>
           </div>
 

@@ -10,7 +10,7 @@ import {links} from '../data/dummy';
 const Sidebar = () => {
     const {activeMenu,setActiveMenu}=useStateContext();
     const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-green-900  text-md m-2 hover:bg-green-200';
-    const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-green-200 dark:hover:text-white-900 hover:bg-green-200 m-2';
+    const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-green-700 dark:text-green-200 dark:hover:text-white-900 hover:bg-green-200 m-2';
 
   return (
     <div className='ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 '>{
@@ -33,7 +33,7 @@ const Sidebar = () => {
         <div className='mt-10 '>
             {links.map((item)=>(
                 <div key={item.title}>
-                    <p className='text-gray-400 m-3 mt-4 uppercase'>{item.title}</p>
+                    <p className='text-grey-400 m-3 mt-4 uppercase'>{item.title}</p>
                     {item.links.map((link)=>(
                         <NavLink
                         to={`/${link.name}`}
