@@ -47,7 +47,7 @@ const Registration = () => {
         let recievedData=Object.fromEntries(data.entries());
         recievedData.desig="Employee";
         recievedData.projid="NA";
-        axios.post('https://dnyindia.in/api/user/register/dashboard/', recievedData, {
+        axios.post('https://tilapi.pocsofclients.com/api/user/register/dashboard/', recievedData, {
         headers: { 'Content-type': 'application/json; charset=UTF-8' }
         }).then((data) => {
             navigate('/pocsof/clients/tier1integrity/Users');

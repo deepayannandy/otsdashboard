@@ -12,7 +12,7 @@ const Consumables = () => {
   const[equipmentdata,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("https://dnyindia.in/api/consumeables/dashboardConsumable/getall",).then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/consumeables/dashboardConsumable/getall",).then((response)=>{
       setData(response.data);
     })
   }
@@ -75,14 +75,14 @@ if (args.data['branchID'] ==="Port Lavaca, TX 77979") {
     if(args.requestType=="save" && args.action=="add"){
       console.log("Saved new data");
       console.log(args.data);
-      axios.post('https://dnyindia.in/api/consumeables/dashboard/', args.data, {
+      axios.post('https://tilapi.pocsofclients.com/api/consumeables/dashboard/', args.data, {
         headers: { 'Content-type': 'application/json; charset=UTF-8' }
     }).then((data) => console.log(data))
     }
     if(args.requestType=="save" && args.action=="edit"){
       console.log("Saved edited data");
       console.log(args.data);
-      axios.patch('https://dnyindia.in/api/consumeables/dashboard/'+args.data._id, args.data, {
+      axios.patch('https://tilapi.pocsofclients.com/api/consumeables/dashboard/'+args.data._id, args.data, {
         headers: { 'Content-type': 'application/json; charset=UTF-8' }
     }).then((data) => console.log(data))
     }

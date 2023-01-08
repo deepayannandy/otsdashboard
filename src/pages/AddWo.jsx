@@ -26,7 +26,7 @@ const AddWO = () => {
     const [selectrental,setselectrental]=useState([]);
     const getclientList= ()=>
   {
-    axios.get("https://dnyindia.in/api/po/").then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/po/").then((response)=>{
         let cllist=[]
         for (let client in response.data){
             cllist.push({value:response.data[client]._id,label:response.data[client].poNumber})
@@ -43,7 +43,7 @@ const AddWO = () => {
   const getworkerList= ()=>
   {
     console.log(scostcenter);
-    axios.get("https://dnyindia.in/api/user/dashboardUserState/getall").then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/user/dashboardUserState/getall").then((response)=>{
         let freeworker=[]
         for (let client in response.data){
             if (response.data[client].desig=="Employee" && response.data[client].projid=="" && response.data[client].empBranch==scostcenter){
@@ -60,7 +60,7 @@ const AddWO = () => {
   const getEquipementList= ()=>
   {
     console.log(scostcenter);
-    axios.get("https://dnyindia.in/api/equipements/dashboardEquipment/getall/").then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/equipements/dashboardEquipment/getall/").then((response)=>{
         let equipements=[]
         for (let client in response.data){
             if (response.data[client].branchID==scostcenter){
@@ -77,7 +77,7 @@ const AddWO = () => {
   const getConsumableList= ()=>
   {
     console.log(scostcenter);
-    axios.get("https://dnyindia.in/api/consumeables/dashboardConsumable/getall").then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/consumeables/dashboardConsumable/getall").then((response)=>{
         let consumeables=[]
         for (let client in response.data){
             if (response.data[client].branchID==scostcenter){
@@ -105,7 +105,7 @@ const AddWO = () => {
         recievedData.managerId="Admin";
         const file= recievedData.fileinput;
         console.log(recievedData);
-        axios.post('https://dnyindia.in/api/wo/', recievedData, {
+        axios.post('https://tilapi.pocsofclients.com/api/wo/', recievedData, {
         headers: { 'Content-type': 'application/json; charset=UTF-8','auth-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzlhNDRmNjFmN2Y0MjMyMGIwOWY1MjQiLCJkZXNpZyI6Ik1hbmFnZXIiLCJpYXQiOjE2NzEwNTQ2NDJ9.wftzYTqVIB_ACxuj0WEiVOJozJoQAx8ek3AjlG_TY5I" }
         }).then((data) => {
             navigate('/pocsof/clients/tier1integrity/WO');
@@ -135,7 +135,7 @@ const AddWO = () => {
     const setCostCenter =(e)=>{
         console.log(e.target.value);
         setscostcenter(e.target.value);
-        axios.get("https://dnyindia.in/api/user/dashboardUserState/getall").then((response)=>{
+        axios.get("https://tilapi.pocsofclients.com/api/user/dashboardUserState/getall").then((response)=>{
         let freeworker=[]
         for (let client in response.data){
             if (response.data[client].desig=="Employee" && response.data[client].projid=="" && response.data[client].empBranch==e.target.value){
@@ -144,7 +144,7 @@ const AddWO = () => {
         }
         setworkerList(freeworker);
         })
-        axios.get("https://dnyindia.in/api/equipements/dashboardEquipment/getall/").then((response)=>{
+        axios.get("https://tilapi.pocsofclients.com/api/equipements/dashboardEquipment/getall/").then((response)=>{
             let equipements=[]
             for (let client in response.data){
                 if (response.data[client].branchID==scostcenter){

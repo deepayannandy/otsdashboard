@@ -17,7 +17,7 @@ const Dashboard = () => {
   const[todaysdata,settodaysData]=useState("")
   const gettodaysdata= ()=>
   {
-    axios.get("https://dnyindia.in/api/user/dashboardUserState/get/"+today).then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/user/dashboardUserState/get/"+today).then((response)=>{
 
       settodaysData(response.data);
     })
@@ -29,7 +29,7 @@ const Dashboard = () => {
   const[data,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("https://dnyindia.in/api/user/dashboardUserState/get",
+    axios.get("https://tilapi.pocsofclients.com/api/user/dashboardUserState/get",
     ).then((response)=>{
       setData(response.data);
     })
@@ -174,7 +174,7 @@ let [selectedDate, setselectedDate] = useState(today);
                 const dateString=date.value.getUTCFullYear()+"-"+(date.value.getUTCMonth()+1)+"-"+date.value.getDate();
                 console.log(dateString);
                 setselectedDate(dateString);
-                axios.get("https://dnyindia.in/api/user/dashboardUserState/get/"+dateString).then((response)=>{
+                axios.get("https://tilapi.pocsofclients.com/api/user/dashboardUserState/get/"+dateString).then((response)=>{
                 console.log(response);
                 settodaysData(response.data);
               })

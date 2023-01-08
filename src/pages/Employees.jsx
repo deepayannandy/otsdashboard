@@ -22,7 +22,7 @@ const Employees = () => {
   const navigate = useNavigate();
   const getdata= ()=>
   {
-    axios.get("https://dnyindia.in/api/user/dashboardUserState/getall",).then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/user/dashboardUserState/getall",).then((response)=>{
       setData(response.data);
     })
   }
@@ -96,7 +96,7 @@ const Employees = () => {
     if(args.requestType=="save"){
       console.log("Save data");
       console.log(args.data);
-      axios.post('https://dnyindia.in/api/user/register/dashboard/', args.data, {
+      axios.post('https://tilapi.pocsofclients.com/api/user/register/dashboard/', args.data, {
         headers: { 'Content-type': 'application/json; charset=UTF-8' }
     }).then((data) => console.log(data))
     }

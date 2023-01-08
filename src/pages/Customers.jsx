@@ -14,7 +14,7 @@ const Customers = () => {
   const[employeedata,setData]=useState("")
   const getdata= ()=>
   {
-    axios.get("https://dnyindia.in/api/customer/dashboardCustomers/getall",).then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/customer/dashboardCustomers/getall",).then((response)=>{
       setData(response.data);
     })
   }
@@ -47,7 +47,7 @@ const Customers = () => {
     if(args.requestType=="save"){
       console.log("Save data");
       console.log(args.data);
-      axios.patch('https://dnyindia.in/api/customer/'+args.data._id, args.data, {
+      axios.patch('https://tilapi.pocsofclients.com/api/customer/'+args.data._id, args.data, {
         headers: { 'Content-type': 'application/json; charset=UTF-8' }
     }).then((data) => console.log(data))
     }

@@ -41,7 +41,7 @@ const WO = () => {
   const navigate = useNavigate();
   const getdata= ()=>
   {
-    axios.get("https://dnyindia.in/api/wo/",).then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/wo/",).then((response)=>{
       setData(response.data);
     })
   }

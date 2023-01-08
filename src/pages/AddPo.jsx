@@ -12,7 +12,7 @@ const AddPO = () => {
     const [clientList,setclientList]=useState([]);
     const getclientList= ()=>
   {
-    axios.get("https://dnyindia.in/api/customer/dashboardCustomers/getall/").then((response)=>{
+    axios.get("https://tilapi.pocsofclients.com/api/customer/dashboardCustomers/getall/").then((response)=>{
         let cllist=[]
         for (let client in response.data){
             cllist.push(response.data[client].Customer)
@@ -89,7 +89,7 @@ const AddPO = () => {
         }).catch((error)=>{console.log(error)})
         recievedData.managerId="Admin"
         console.log(recievedData)
-        axios.post('https://dnyindia.in/api/po/', recievedData, {
+        axios.post('https://tilapi.pocsofclients.com/api/po/', recievedData, {
         headers: { 'Content-type': 'application/json; charset=UTF-8','auth-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzlhNDRmNjFmN2Y0MjMyMGIwOWY1MjQiLCJkZXNpZyI6Ik1hbmFnZXIiLCJpYXQiOjE2NzEwNTQ2NDJ9.wftzYTqVIB_ACxuj0WEiVOJozJoQAx8ek3AjlG_TY5I" }
         }).then((data) => {
             navigate('pocsof/clients/tier1integrity/PO');

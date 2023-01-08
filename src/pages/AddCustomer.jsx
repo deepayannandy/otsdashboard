@@ -45,7 +45,7 @@ const AddCustomer = () => {
         const data= new FormData(e.target)
         let recievedData=Object.fromEntries(data.entries());
         console.log(recievedData);
-        axios.post('https://dnyindia.in/api/customer/', recievedData, {
+        axios.post('https://tilapi.pocsofclients.com/api/customer/', recievedData, {
         headers: { 'Content-type': 'application/json; charset=UTF-8','auth-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzlhNDRmNjFmN2Y0MjMyMGIwOWY1MjQiLCJkZXNpZyI6Ik1hbmFnZXIiLCJpYXQiOjE2NzEwNTQ2NDJ9.wftzYTqVIB_ACxuj0WEiVOJozJoQAx8ek3AjlG_TY5I" }
         }).then((data) => {
             navigate('/pocsof/clients/tier1integrity/customers');
