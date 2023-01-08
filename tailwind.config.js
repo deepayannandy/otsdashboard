@@ -41,6 +41,8 @@ module.exports = {
         backgroundImage: {
           'hero-pattern':
             "url('https://firebasestorage.googleapis.com/v0/b/ots-pocket.appspot.com/o/projectFiles%2Fhero.png?alt=media&token=ac3bfc69-7096-4c38-b603-2974d5eca03a')",
+            'hero-water':
+            "url('https://firebasestorage.googleapis.com/v0/b/ots-pocket.appspot.com/o/projectFiles%2FCopy%20of%20Copy%20of%20PocSof%20(1).png?alt=media&token=a1dc88b7-6724-47e2-9108-9c778b8050c8')",
         },
       },
     },

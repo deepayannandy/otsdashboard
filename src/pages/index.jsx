@@ -5,3 +5,7 @@ export { default as  Employees} from './Employees';
 export { default as Customers} from './Customers';
 export { default as  PO} from './Po';
 export { default as  WO} from './Wo';
+export { default as Registration} from './Registration';
+export { default as AddPO} from './AddPo';
+export { default as AddWO} from './AddWo';
+export { default as AddCustomer} from './AddCustomer';

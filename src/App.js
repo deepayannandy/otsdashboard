@@ -3,7 +3,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import {FiSettings} from 'react-icons/fi';
 import {  TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { Navbar,Footer,ThemeSettings, Sidebar, } from './componets';
-import { Employees, Consumables, Dashboard, Equipments, PO,WO, Customers } from './pages';
+import { Employees, Consumables, Dashboard, Equipments, PO,WO, Customers, Registration, AddPO,AddWO, AddCustomer} from './pages';
 import "./App.css";
 import { useStateContext } from './contexts/ContextProvider';
 
@@ -13,15 +13,15 @@ const App = () => {
     <BrowserRouter>
     <div className='flex relative dark:bg-main-dark-bg'>
       
-      <div className='fixed right-4 bottom-4' style={{zIndex:'1000'}}>
+      {/* <div className='fixed right-4 bottom-4' style={{zIndex:'1000'}}>
         <TooltipComponent content="settings" position='top'>
           <button type='button' className='text-3xl p-3 hover:drop-shadow-xl hover:bg-lisgt-grey text-white' style={{background: 'green', borderRadius:'50%'}}>
             <FiSettings/>
           </button>
         </TooltipComponent>
-      </div>
+      </div> */}
       
-        {activeMenu?(<div className='w-72 fixed sidebar dark:bg-secondery-dark-bg bg-white'>
+        {activeMenu?(<div className='w-50 fixed sidebar dark:bg-secondery-dark-bg bg-white'>
           <Sidebar/>
         </div>):(<div className='w-0 dark:bg-secondery-dark-bg'>
          <Sidebar/>
@@ -39,15 +39,19 @@ const App = () => {
             <Routes>
               <Route path='/' element={<Dashboard/>}/>
               <Route path='/pocsof/clients/tier1integrity' element={<Dashboard/>}/>
-              <Route path='/dashboard' element={<Dashboard/>}/>
+              <Route path='/pocsof/clients/tier1integrity/dashboard' element={<Dashboard/>}/>
 
-              <Route path='/Users' element={<Employees/>}/>
-              <Route path='/PO' element={<PO/>}/>
-              <Route path='/WO' element={<WO/>}/>
-              <Route path='/Daily Time Sheet' element={<Employees/>}/>
-              <Route path='/customers' element={<Customers/>}/>
-              <Route path='/consumables' element={<Consumables/>}/>
-              <Route path='/equipments' element={<Equipments/>}/>
+              <Route path='pocsof/clients/tier1integrity/Users' element={<Employees/>}/>
+              <Route path='pocsof/clients/tier1integrity/PO' element={<PO/>}/>
+              <Route path='pocsof/clients/tier1integrity/WO' element={<WO/>}/>
+              <Route path='pocsof/clients/tier1integrity/Daily Time Sheet' element={<Employees/>}/>
+              <Route path='pocsof/clients/tier1integrity/customers' element={<Customers/>}/>
+              <Route path='pocsof/clients/tier1integrity/consumables' element={<Consumables/>}/>
+              <Route path='pocsof/clients/tier1integrity/equipments' element={<Equipments/>}/>
+              <Route path='pocsof/clients/tier1integrity/addnewemployee' element={<Registration/>}/>
+              <Route path='pocsof/clients/tier1integrity/addnewpo' element={<AddPO/>}/>
+              <Route path='pocsof/clients/tier1integrity/addnewwo' element={<AddWO/>}/>
+              <Route path='pocsof/clients/tier1integrity/addnewcustomer' element={<AddCustomer/>}/>
             </Routes>
       </div>
           <Footer/>

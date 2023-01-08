@@ -39,7 +39,7 @@ useEffect(()=>{
 },[])
 let [selectedDate, setselectedDate] = useState(today);
   return (
-    <div className='mt-5'>
+    <div className='mt-5 bg-hero-water'>
       <div className='flex flex-wrap  justify-center'>
         <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-screen p-8 pt-9 m-3  bg-no-repeat bg-cover bg-center bg-hero-pattern'>
           <div className='flex items-center m-4'>

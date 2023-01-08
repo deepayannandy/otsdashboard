@@ -5,6 +5,7 @@
   "homepage": "https://ot-software.com/pocsof/clients/tier1integrity",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "@syncfusion/ej2": "^19.4.48",
     "@syncfusion/ej2-react-calendars": "^19.4.48",
     "@syncfusion/ej2-react-charts": "^19.4.50",
@@ -15,6 +16,7 @@
     "@syncfusion/ej2-react-popups": "^19.4.52",
     "@syncfusion/ej2-react-richtexteditor": "^19.4.50",
     "@syncfusion/ej2-react-schedule": "^19.4.50",
+    "aws-sdk": "^2.1281.0",
     "axios": "^1.2.0",
     "moment": "^2.29.4",
     "react": "^17.0.2",
@@ -22,8 +24,10 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-moment": "^1.1.2",
+    "react-qr-code": "^2.0.11",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.0"
+    "react-scripts": "5.0.0",
+    "react-select": "^5.7.0"
   },
   "scripts": {
     "start": "react-scripts start",

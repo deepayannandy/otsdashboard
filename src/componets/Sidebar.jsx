@@ -36,7 +36,7 @@ const Sidebar = () => {
                     <p className='text-grey-400 m-3 mt-4 uppercase'>{item.title}</p>
                     {item.links.map((link)=>(
                         <NavLink
-                        to={`/${link.name}`}
+                        to={`/pocsof/clients/tier1integrity/${link.name}`}
                         key={link.name}
                         onClick={()=>{}}
                         className={({isActive})=>isActive? activeLink : normalLink}

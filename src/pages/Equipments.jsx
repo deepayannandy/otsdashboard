@@ -89,7 +89,7 @@ if (args.data['branchID'] ==="Port Lavaca, TX 77979") {
   }
   return (
 
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-hero-water rounded-3xl">
       <Header category="Page" title="All Equipments" />
       <GridComponent
         ref={g => grid = g}

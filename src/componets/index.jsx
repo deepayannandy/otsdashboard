@@ -10,3 +10,6 @@ export { default as SparkLine } from './charts/SparkLine';
 export { default as Stacked } from './charts/Stacked';
 export { default as Pie } from './charts/Pie';
 export { default as Chart } from './charts/Chart';
+export { default as InputSelect } from './InputSelect';
+export { default as Input } from './Input';
+export { default as InputSelectFilter } from './InputSelectFilter';

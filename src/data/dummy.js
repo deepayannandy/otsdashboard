@@ -38,9 +38,18 @@ export const gridOrderStatus = (props) => (
   <button
     type="button"
     style={{ background: props.StatusBg }}
-    className="text-white py-1 px-2 capitalize rounded-2xl text-md"
+    className="text-white font-xs py-1 px-2 capitalize rounded-2xl text-md"
   >
     {props.Status}
+  </button>
+);
+export const showQR = (props) => (
+  <button
+    type="button"
+    style={{ background: "#008000" }}
+    className="showqr text-white py-1 px-2 capitalize rounded-2xl text-md"
+  >
+    Show QR
   </button>
 );
 
@@ -500,14 +509,6 @@ export const links = [
     title: 'Project Management',
     links: [
       {
-        name: 'equipments',
-        icon: <IoMdConstruct />,
-      },
-      {
-        name: 'consumables',
-        icon: <RiSurgicalMaskFill />,
-      },
-      {
         name: 'PO',
         icon: <GrDocumentVerified />,
       },
@@ -520,6 +521,28 @@ export const links = [
         icon: <AiOutlineCalendar />,
       },
      
+      // {
+      //   name: 'editor',
+      //   icon: <FiEdit />,
+      // },
+      // {
+      //   name: 'color-picker',
+      //   icon: <BiColorFill />,
+      // },
+    ],
+  },
+  {
+    title: 'Inventory Management',
+    links: [
+      {
+        name: 'equipments',
+        icon: <IoMdConstruct />,
+      },
+      {
+        name: 'consumables',
+        icon: <RiSurgicalMaskFill />,
+      },
+      
       // {
       //   name: 'editor',
       //   icon: <FiEdit />,
@@ -927,30 +950,16 @@ export const userGrid = [
     field: 'empBranch',
     headerText: 'Cost Center',
     editType: 'dropdownedit',
-    width: '120',
+    width: '80',
     textAlign: 'Left',
     
   },
   {
     field: 'projid',
-    headerText: 'Project Id',
-    width: '120',
+    headerText: 'WO#',
+    width: '150',
     textAlign: 'Left',
     
-  },
-  {
-    field: 'ssn',
-    headerText: 'SSN',
-    width: '120',
-    textAlign: 'Left',
-    visible:false,
-  },
-  {
-    field: 'password',
-    headerText: 'Password',
-    width: '120',
-    textAlign: 'Left',
-    visible:false,
   },
   // {
   //   field: 'salary',
@@ -975,9 +984,16 @@ export const userGrid = [
     field: 'desig',
     headerText: 'Designation',
     editType: 'dropdownedit',
-    width: '150',
+    width: '80',
     textAlign: 'Left',
   },
+  {
+    field:"_id",
+    headerText:"Show QR",
+    width: '100',
+    textAlign: 'Left',
+    template: showQR,
+  }
 ];
 
 export const equipmentGrid = [
@@ -1004,6 +1020,13 @@ export const equipmentGrid = [
     editType: 'dropdownedit',
     textAlign: 'Left',
   },
+  {
+    field:"_id",
+    headerText:"Show QR",
+    width: '100',
+    textAlign: 'Left',
+    template: showQR,
+  }
 ];
 
 export const  consumableGrid= [
@@ -1030,6 +1053,13 @@ export const  consumableGrid= [
     editType: 'dropdownedit',
     textAlign: 'Left',
   },
+  {
+    field:"_id",
+    headerText:"Show QR",
+    width: '100',
+    textAlign: 'Left',
+    template: showQR,
+  }
 ];
 
 export const  customerGrid= [
@@ -1040,8 +1070,18 @@ export const  customerGrid= [
     editType: 'dropdownedit',
     textAlign: 'Left',
   },
+  { field: 'contactperson',
+    headerText: 'Contact Person',
+    width: '150',
+    textAlign: 'Left',
+  },
+  { field: 'email',
+    headerText: 'Contact email',
+    width: '200',
+    textAlign: 'Left',
+  },
   { field: 'contact',
-    headerText: 'Contact',
+    headerText: 'Phone Number',
     width: '150',
     textAlign: 'Left',
   },
@@ -1052,11 +1092,125 @@ export const  customerGrid= [
   },
   { field: 'branchID',
     headerText: 'Cost Center',
+    width: '200',
+    textAlign: 'Left',
+  },
+  {
+    field:"_id",
+    headerText:"Show QR",
+    width: '100',
+    textAlign: 'Left',
+    template: showQR,
+  }
+  
+];
+
+export const  poGrid= [
+  {
+    field: 'CustomerID',
+    headerText: 'Customer Name',
+    width: '150',
+    editType: 'dropdownedit',
+    textAlign: 'Left',
+  },
+  { field: 'JD',
+    headerText: 'Job Description',
     width: '150',
     textAlign: 'Left',
   },
+  { field: 'poNumber',
+    headerText: 'PO#',
+    width: '150',
+    textAlign: 'Left',
+  },
+  { field: 'branchID',
+    headerText: 'Cost Center',
+    width: '150',
+    textAlign: 'Left',
+  },
+  {
+    field:"email",
+    headerText:"Email",
+    width: '150',
+    textAlign: 'Left',
+  },
+  {
+    field:"typeofpo",
+    headerText:"PO Type",
+    width: '150',
+    textAlign: 'Left',
+  },
+  {
+    field:"_id",
+    headerText:"Show QR",
+    width: '100',
+    textAlign: 'Left',
+    template: showQR,
+  }
   
 ];
+
+export const  woGrid= [
+  {
+    field: 'poID',
+    headerText: 'PO#',
+    width: '150',
+    textAlign: 'Left',
+  },
+  { field: 'description',
+    headerText: 'Job Description',
+    width: '150',
+    textAlign: 'Left',
+  },
+  { field: 'woNumber',
+    headerText: 'WO#',
+    width: '150',
+    textAlign: 'Left',
+  },
+  { field: 'branchID',
+    headerText: 'Cost Center',
+    width: '150',
+    textAlign: 'Left',
+  },
+  {
+    field:"startDate",
+    headerText:"Start Date",
+    width: '120',
+    textAlign: 'Left',
+  },
+  {
+    field:"endDate",
+    headerText:"End Date",
+    width: '120',
+    textAlign: 'Left',
+  },
+  {
+    field:"_id",
+    headerText:"Show QR",
+    width: '100',
+    textAlign: 'Left',
+    template: showQR,
+  }
+  
+];
+
+export const deleteTemplate = function () {
+  return {
+    template: React.component('deleteTemplate', {
+      template: '<ejs-button class="btn btn-default" @click="deleteItem">Show QR</ejs-button>',
+      data: function () {
+        return {
+          data: {}
+        }
+      },
+      methods: {
+        deleteItem () {
+          console.log('deleteItem', this.data)
+        }
+      }
+    })
+  }
+}
 
 // export const customersData = [
 //   {
