@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Header,Input, InputSelect} from '../componets'
 import axios from 'axios'
 const AddCustomer = () => {
     const navigate = useNavigate();
+    useEffect(()=>{
+        if (!localStorage.getItem('userinfo')){
+          navigate('/Login');
+        }
+        })
     const costcenters=[ "Pasadena, TX 77506","Nederland, TX 77627","Snyder, TX 79549","Angleton, TX 77515","Port Lavaca, TX 77979"]
     const [errormessage,setErrormessage]=useState("");
     const inputs=[
@@ -17,14 +22,12 @@ const AddCustomer = () => {
             id:2,
             name:"email",
             type:"email",
-            pattern:"+@.com",
             placeholder:"Email",
         },
         {
             id:3,
             name:"contact",
             type:"tel",
-            pattern:"[0-9]{3}[0-9]{3}[0-9]{4}",
             placeholder:"Contact Number",
         },
         {
@@ -48,7 +51,7 @@ const AddCustomer = () => {
         axios.post('https://tilapi.pocsofclients.com/api/customer/', recievedData, {
         headers: { 'Content-type': 'application/json; charset=UTF-8','auth-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzlhNDRmNjFmN2Y0MjMyMGIwOWY1MjQiLCJkZXNpZyI6Ik1hbmFnZXIiLCJpYXQiOjE2NzEwNTQ2NDJ9.wftzYTqVIB_ACxuj0WEiVOJozJoQAx8ek3AjlG_TY5I" }
         }).then((data) => {
-            navigate('/pocsof/clients/tier1integrity/customers');
+            navigate('/customers');
         }).catch((error)=>{
             if(error.response){
                 console.log(error.response.data);

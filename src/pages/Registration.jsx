@@ -9,7 +9,7 @@ const Registration = () => {
     const inputs=[
         {
             id:1,
-            name:"fullname",
+            name:"email",
             type:"text",
             placeholder:"Full Name",
         },
@@ -50,7 +50,7 @@ const Registration = () => {
         axios.post('https://tilapi.pocsofclients.com/api/user/register/dashboard/', recievedData, {
         headers: { 'Content-type': 'application/json; charset=UTF-8' }
         }).then((data) => {
-            navigate('/pocsof/clients/tier1integrity/Users');
+            navigate('/Users');
         }).catch((error)=>{
             if(error.response){
                 console.log(error.response.data);

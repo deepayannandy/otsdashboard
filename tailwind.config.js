@@ -43,7 +43,9 @@ module.exports = {
             "url('https://firebasestorage.googleapis.com/v0/b/ots-pocket.appspot.com/o/projectFiles%2Fhero.png?alt=media&token=ac3bfc69-7096-4c38-b603-2974d5eca03a')",
             'hero-water':
             "url('https://firebasestorage.googleapis.com/v0/b/ots-pocket.appspot.com/o/projectFiles%2FCopy%20of%20Copy%20of%20PocSof%20(1).png?alt=media&token=a1dc88b7-6724-47e2-9108-9c778b8050c8')",
-        },
+            'hero-texus':
+            "url('https://firebasestorage.googleapis.com/v0/b/ots-pocket.appspot.com/o/projectFiles%2FCopy%20of%20Copy%20of%20PocSof%20(2).png?alt=media&token=9933eaf9-92d9-4432-ac89-732c54f503f1')"
+        },  
       },
     },
     plugins: [],

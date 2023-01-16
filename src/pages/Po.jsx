@@ -11,12 +11,17 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
-import QRCode from "react-qr-code";
+import { QRCode } from 'react-qrcode-logo';
 const PO = () => {
   const[POedata,setData]=useState("")
   const[selectedPOedata,setselectedPOedata]=useState({})
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+  useEffect(()=>{
+    if (!localStorage.getItem('userinfo')){
+      navigate('/Login');
+    }
+    })
   const getdata= ()=>
   {
     axios.get("https://tilapi.pocsofclients.com/api/po/",).then((response)=>{
@@ -27,7 +32,7 @@ const PO = () => {
     getdata()
   },[])
   const toolbarOptions = ['Search','ExcelExport','PdfExport'];
-  const editing = { allowDeleting: true, allowEditing: true , allowAdding: true,mode: 'Dialog'};
+  const editing = { allowDeleting: false, allowEditing: false , allowAdding: false,mode: 'Dialog'};
   let grid;
   const toolbarClick = (args) => {
     if (grid) {
@@ -73,7 +78,7 @@ const PO = () => {
 
 
   const navigatetoRgistration=()=>{
-    navigate('/pocsof/clients/tier1integrity/addnewpo');
+    navigate('/addnewpo');
   }
   const recordClick = (args) => {
     if (args.target.classList.contains('showqr')) {
@@ -115,11 +120,14 @@ const PO = () => {
         <DialogTitle>{"Details of: "+selectedPOedata.poNumber}</DialogTitle>
         <DialogContent className='w-full'>
         <div style={{ height: "auto", margin: "0 auto", maxWidth: 200, width: "100%" }}>
-            <QRCode
-            size={256}
+        <QRCode
+            size={200}
             style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-            value={selectedPOedata._id}
+            value={"https://tier1integrity.pocsofclients.com/PoProfile?id="+selectedPOedata._id}
             viewBox={`0 0 256 256`}
+            logoWidth={180 * 0.2}
+            logoImage="https://firebasestorage.googleapis.com/v0/b/ots-pocket.appspot.com/o/projectFiles%2Fclientavatar.png?alt=media&token=662f9c22-edd5-4387-aa66-093ce4cfa184"
+            
             />
         </div>
         <div className='h-3'>
@@ -147,7 +155,7 @@ const PO = () => {
             <tbody>
             { selectedPOedata.wos.map((eq)=>(
                                 <tr>
-                                    <td class="border border-slate-700 ...">{eq}</td>
+                                    <td class="border border-slate-700 ..."><a target="_blank" rel="noopener noreferrer" href={'https://tier1integrity.pocsofclients.com/WoProfile?id='+eq}>{eq}</a></td>
                                 </tr>
                             ))
                 }

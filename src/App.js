@@ -3,12 +3,18 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import {FiSettings} from 'react-icons/fi';
 import {  TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { Navbar,Footer,ThemeSettings, Sidebar, } from './componets';
-import { Employees, Consumables, Dashboard, Equipments, PO,WO, Customers, Registration, AddPO,AddWO, AddCustomer} from './pages';
+import { Employees, Consumables, Dashboard, Equipments, PO,WO, Customers, Registration, AddPO,AddWO, AddCustomer, Timecard,Login,UserProfile,Page404,EquipProfile,ConsProfile,PoProfile,WoProfile,CustomerProfile} from './pages';
 import "./App.css";
 import { useStateContext } from './contexts/ContextProvider';
 
 const App = () => {
-  const { activeMenu}=useStateContext();
+  const { activeMenu, isLogin , setisLogin}=useStateContext();
+  useEffect(()=>{
+  if (localStorage.getItem('userinfo')){
+    setisLogin(true);
+  }
+  }
+)
   return (
     <BrowserRouter>
     <div className='flex relative dark:bg-main-dark-bg'>
@@ -31,27 +37,33 @@ const App = () => {
             ? 'dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  '
             : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
           }>
-            <div className='fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full'>
+            { isLogin ?<div className='fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full'>
              <Navbar/>
-            </div>
+            </div>: <div/>}
 
       <div>
             <Routes>
               <Route path='/' element={<Dashboard/>}/>
-              <Route path='/pocsof/clients/tier1integrity' element={<Dashboard/>}/>
-              <Route path='/pocsof/clients/tier1integrity/dashboard' element={<Dashboard/>}/>
-
-              <Route path='pocsof/clients/tier1integrity/Users' element={<Employees/>}/>
-              <Route path='pocsof/clients/tier1integrity/PO' element={<PO/>}/>
-              <Route path='pocsof/clients/tier1integrity/WO' element={<WO/>}/>
-              <Route path='pocsof/clients/tier1integrity/Daily Time Sheet' element={<Employees/>}/>
-              <Route path='pocsof/clients/tier1integrity/customers' element={<Customers/>}/>
-              <Route path='pocsof/clients/tier1integrity/consumables' element={<Consumables/>}/>
-              <Route path='pocsof/clients/tier1integrity/equipments' element={<Equipments/>}/>
-              <Route path='pocsof/clients/tier1integrity/addnewemployee' element={<Registration/>}/>
-              <Route path='pocsof/clients/tier1integrity/addnewpo' element={<AddPO/>}/>
-              <Route path='pocsof/clients/tier1integrity/addnewwo' element={<AddWO/>}/>
-              <Route path='pocsof/clients/tier1integrity/addnewcustomer' element={<AddCustomer/>}/>
+              <Route path='/dashboard' element={<Dashboard/>}/>
+              <Route path='/Users' element={<Employees/>}/>
+              <Route path='/PO' element={<PO/>}/>
+              <Route path='/WO' element={<WO/>}/>
+              <Route path='/Daily Time Sheet' element={<Timecard/>}/>
+              <Route path='/customers' element={<Customers/>}/>
+              <Route path='/consumables' element={<Consumables/>}/>
+              <Route path='/equipments' element={<Equipments/>}/>
+              <Route path='/addnewemployee' element={<Registration/>}/>
+              <Route path='/addnewpo' element={<AddPO/>}/>
+              <Route path='/addnewwo' element={<AddWO/>}/>
+              <Route path='/addnewcustomer' element={<AddCustomer/>}/>
+              <Route path='/Login' element={<Login/>}/>
+              <Route path='/UserProfile' element={<UserProfile/>}/>
+              <Route path='/EquipProfile' element={<EquipProfile/>}/>
+              <Route path='/ConsProfile' element={<ConsProfile/>}/>
+              <Route path='/PoProfile' element={<PoProfile/>}/>
+              <Route path='/WoProfile' element={<WoProfile/>}/>
+              <Route path='/CustomerProfile' element={<CustomerProfile/>}/>
+              <Route path='*' element={<Page404/>}/>
             </Routes>
       </div>
           <Footer/>

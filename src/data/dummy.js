@@ -38,7 +38,7 @@ export const gridOrderStatus = (props) => (
   <button
     type="button"
     style={{ background: props.StatusBg }}
-    className="text-white font-xs py-1 px-2 capitalize rounded-2xl text-md"
+    className="active text-white font-xs py-1 px-2 capitalize rounded-2xl text-md"
   >
     {props.Status}
   </button>
@@ -413,7 +413,7 @@ export const customersGrid = [
     textAlign: 'Center' },
   { field: 'Status',
     headerText: 'Status',
-    width: '130',
+    width: '100',
     format: 'yMd',
     textAlign: 'Center',
     template: customerGridStatus },
@@ -944,7 +944,7 @@ export const userGrid = [
     template: gridOrderStatus,
     field: 'status',
     textAlign: 'Left',
-    width: '120',
+    width: '80',
   },
   {
     field: 'empBranch',
@@ -984,12 +984,13 @@ export const userGrid = [
     field: 'desig',
     headerText: 'Designation',
     editType: 'dropdownedit',
-    width: '80',
+    width: '100',
     textAlign: 'Left',
   },
   {
     field:"_id",
     headerText:"Show QR",
+    isPrimaryKey: true,
     width: '100',
     textAlign: 'Left',
     template: showQR,
@@ -1024,6 +1025,7 @@ export const equipmentGrid = [
     field:"_id",
     headerText:"Show QR",
     width: '100',
+    isPrimaryKey: true,
     textAlign: 'Left',
     template: showQR,
   }
@@ -1056,6 +1058,7 @@ export const  consumableGrid= [
   {
     field:"_id",
     headerText:"Show QR",
+    isPrimaryKey: true,
     width: '100',
     textAlign: 'Left',
     template: showQR,
@@ -1098,6 +1101,7 @@ export const  customerGrid= [
   {
     field:"_id",
     headerText:"Show QR",
+    isPrimaryKey: true,
     width: '100',
     textAlign: 'Left',
     template: showQR,
@@ -1152,13 +1156,13 @@ export const  poGrid= [
 
 export const  woGrid= [
   {
-    field: 'poID',
+    field: 'poName',
     headerText: 'PO#',
     width: '150',
     textAlign: 'Left',
   },
-  { field: 'description',
-    headerText: 'Job Description',
+  { field: 'JT',
+    headerText: 'Job Title',
     width: '150',
     textAlign: 'Left',
   },
@@ -1191,6 +1195,62 @@ export const  woGrid= [
     textAlign: 'Left',
     template: showQR,
   }
+  
+];
+
+export const  timecardGrid= [
+  {
+    field:'submitdate',
+    headerText: 'Submit Date',
+    width: '150',
+    textAlign: 'Left',
+  },
+  {
+    field: 'empname',
+    headerText: 'Employee Name',
+    width: '150',
+    textAlign: 'Left',
+  },
+  { field: 'shift',
+    headerText: 'Shift',
+    width: '150',
+    textAlign: 'Left',
+  },
+  { field: 'status',
+    headerText: 'Status',
+    width: '150',
+    textAlign: 'Left',
+  },
+  { field: 'branchID',
+    headerText: 'Cost Center',
+    width: '150',
+    textAlign: 'Left',
+  },
+  {
+    field:"wo",
+    headerText:"WO#",
+    width: '120',
+    textAlign: 'Left',
+  },
+  {
+    field:"st",
+    headerText:"ST",
+    width: '120',
+    textAlign: 'Left',
+  },
+  {
+    field:"ot",
+    headerText:"OT",
+    width: '100',
+    textAlign: 'Left',
+  },
+  {
+    field:'tt',
+    headerText:"TT",
+    width: '100',
+    textAlign: 'Left',
+  }
+
   
 ];
 

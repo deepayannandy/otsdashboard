@@ -3,42 +3,30 @@ import { GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, Context
 import { useNavigate } from 'react-router-dom'
 import {  contextMenuItems, woGrid } from '../data/dummy';
 import { Header } from '../componets';
-import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda,Inject,ViewDirective,ViewsDirective } from '@syncfusion/ej2-react-schedule';
+import { ScheduleComponent, Day, Week, WorkWeek, Month,  ResourcesDirective, ResourceDirective,Inject,ViewDirective,ViewsDirective } from '@syncfusion/ej2-react-schedule';
 import axios from 'axios';
+import { closest } from '@syncfusion/ej2-base';
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
+import { QRCode } from 'react-qrcode-logo';
 
 const WO = () => {
   const [oldview, setoldview] = React.useState(true);
-
-  const data = [
-    {
-        Id: 2,
-        Subject: 'T1LWO2022-3-J1216827',
-        StartTime: new Date(2023, 0, 5),
-        EndTime: new Date(),
-        IsAllDay: true,
-        Status: 'Completed',
-        Priority: 'High'
-    },
-    {
-      Id: 1,
-      Subject: 'T1IWO2023-3-J161212',
-      StartTime: new Date(2023, 0, 1),
-      EndTime: new Date(2023, 0, 3),
-      IsAllDay: true,
-      Status: 'Completed',
-      Priority: 'High'
-  },
-  {
-    Id: 3,
-    Subject: 'T1IWO2023-3-J162311',
-    StartTime: new Date(2023, 0, 15),
-    EndTime: new Date(2023,0,20),
-    Status: 'Completed',
-},
-];
-
+  const [schdata,setschdata]= React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const[selectedWOedata,setselectedWOedata]=useState({})
   const[POedata,setData]=useState("")
+
   const navigate = useNavigate();
+  useEffect(()=>{
+    if (!localStorage.getItem('userinfo')){
+      navigate('/Login');
+    }
+    })
   const getdata= ()=>
   {
     axios.get("https://tilapi.pocsofclients.com/api/wo/",).then((response)=>{
@@ -48,8 +36,18 @@ const WO = () => {
   useEffect(()=>{
     getdata()
   },[])
+  const getschdata= ()=>
+  {
+    axios.get("https://tilapi.pocsofclients.com/api/wo/sghedulaing/get",).then((response)=>{
+      setschdata(response.data);
+      console.log(response.data);
+    })
+  }
+  useEffect(()=>{
+    getschdata()
+  },[])
   const toolbarOptions = ['Search','ExcelExport','PdfExport'];
-  const editing = { allowDeleting: true, allowEditing: true , allowAdding: true,mode: 'Dialog'};
+  const editing = { allowDeleting: false, allowEditing: false , allowAdding: false,mode: 'Dialog'};
   let grid;
   const toolbarClick = (args) => {
     if (grid) {
@@ -95,11 +93,26 @@ const WO = () => {
 
 
   const navigatetoRgistration=()=>{
-    navigate('/pocsof/clients/tier1integrity/addnewwo');
+    navigate('/addnewwo');
   }
   const switchview=()=>{
     setoldview(!oldview);
   }
+  const recordClick = (args) => {
+    if (args.target.classList.contains('showqr')) {
+        let rowObj = grid.getRowObjectFromUID(closest(args.target, '.e-row').getAttribute('data-uid'));
+        setselectedWOedata(rowObj.data);
+        setOpen(true);
+        console.log(rowObj.data);
+    }
+  }
+  const handleToClose = () => {
+    setOpen(false);
+  };
+  const ownerData = [
+    { OwnerText: 'Open', Id: 1, OwnerColor: '#ffaa00' },
+    { OwnerText: 'Closed', Id: 2, OwnerColor: '#f8a398' },
+];
 
   return (
 
@@ -122,6 +135,7 @@ const WO = () => {
       toolbar={toolbarOptions}
       toolbarClick={toolbarClick}
       queryCellInfo={queryCellInfo}
+      recordClick={recordClick}
     >
       <ColumnsDirective>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -132,16 +146,133 @@ const WO = () => {
 
       :
       <ScheduleComponent
+      rowAutoHeight={true}
       width= '100%'  height='550px' 
-      eventSettings={{ dataSource: data }}
+      eventSettings={{ dataSource: schdata }}
       >
       <ViewsDirective>
-      <ViewDirective option='WorkWeek' startHour= '7:00' endHour= '24:00' />
-      <ViewDirective  option= 'Week' startHour= '07:00' endHour= '24:00' />
+      {/* <ViewDirective option='WorkWeek' startHour= '7:00' endHour= '24:00' />
+      <ViewDirective  option= 'Week' startHour= '07:00' endHour= '24:00' /> */}
       <ViewDirective option='Month' showWeekend={true} />
       </ViewsDirective>
-      <Inject services={[WorkWeek, Week, Month]} />
+      <ResourcesDirective>
+      <ResourceDirective dataSource={schdata} colorField='colorField'>
+      </ResourceDirective>
+    </ResourcesDirective>
+      <Inject services={[Month]} />
       </ScheduleComponent>}
+
+
+      <Dialog open={open}  onClose={handleToClose}>
+        <DialogTitle>{"Details of: "+selectedWOedata.woNumber}</DialogTitle>
+        <DialogContent className='w-full'>
+        <div style={{ height: "auto", margin: "0 auto", maxWidth: 200, width: "100%" }}>
+        <QRCode
+            size={200}
+            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+            value={"https://tier1integrity.pocsofclients.com/WoProfile?id="+selectedWOedata._id}
+            viewBox={`0 0 256 256`}
+            logoWidth={180 * 0.2}
+            logoImage="https://firebasestorage.googleapis.com/v0/b/ots-pocket.appspot.com/o/projectFiles%2Fclientavatar.png?alt=media&token=662f9c22-edd5-4387-aa66-093ce4cfa184"
+            
+            />
+        </div>
+        <div className='h-3'>
+        </div>
+          <DialogContentText className='center'>
+            {"WO#: "+selectedWOedata.woNumber}
+            <br/>
+            {"PO#: "+selectedWOedata.poName}
+            <br/>
+            {"Job Title: "+selectedWOedata.JT}
+            <br/>
+            {"Cost Center: "+selectedWOedata.branchID}
+            <br/>
+            {"Start Date: "+selectedWOedata.startDate}
+            <br/>
+            {"End Date: "+selectedWOedata.endDate}
+            <br/>
+            {"Created By: "+selectedWOedata.managerId}
+            <br/>
+          </DialogContentText>
+          {
+            selectedWOedata.workers!=undefined?<table className="border-collapse border border-slate-500 w-full">
+            <thead>
+                <th class="border border-slate-600 ">Assigned Employees</th>
+            </thead>
+            <tbody>
+            { selectedWOedata.workers.map((eq)=>(
+                                <tr>
+                                    <td class="border border-slate-700 ...">{eq[1]}</td>
+                                </tr>
+                            ))
+                }
+            </tbody>
+           </table>:<div/>
+          }
+          <div className='h-4'/>
+        {
+            selectedWOedata.equipements!=undefined?<table className="border-collapse border border-slate-500 w-full">
+            <thead>
+                <th class="border border-slate-600 ">Equipment Name</th>
+                <th class="border border-slate-600 ">Quantity</th>
+            </thead>
+            <tbody>
+            { selectedWOedata.equipements.map((eq)=>(
+                                <tr>
+                                    <td class="border text-green-700 border-slate-700 ..."><a href={'https://tier1integrity.pocsofclients.com/EquipProfile?id='+eq[0]}>{eq[2]}</a></td>
+                                    <td class="border text-green-700 border-slate-700 ...">{eq[1]}</td>
+                                </tr>
+                            ))
+                }
+            </tbody>
+           </table>:<div/>
+          }
+           <div className='h-4'/>
+        {
+            selectedWOedata.consumeables!=undefined?<table className="border-collapse border border-slate-500 w-full">
+            <thead>
+                <th class="border border-slate-600 ">Consumable Name</th>
+                <th class="border border-slate-600 ">Quantity</th>
+            </thead>
+            <tbody>
+            { selectedWOedata.consumeables.map((eq)=>(
+                                <tr>
+                                    <td class="border text-green-700 border-slate-700 ..."><a href={'https://tier1integrity.pocsofclients.com/ConsProfile?id='+eq[0]}>{eq[2]}</a></td>
+                                    <td class="border text-green-700 border-slate-700 ...">{eq[1]}</td>
+                                </tr>
+                            ))
+                }
+            </tbody>
+           </table>:<div/>
+          }
+           <div className='h-4'/>
+        {
+            selectedWOedata.rentedEquipements!=undefined?<table className="border-collapse border border-slate-500 w-full">
+            <thead>
+                <th class="border border-slate-600 ">Rental Equipment Name</th>
+                <th class="border border-slate-600 ">Quantity</th>
+            </thead>
+            <tbody>
+            { selectedWOedata.rentedEquipements.map((eq)=>(
+                                <tr>
+                                    <td class="border text-green-700 border-slate-700 ...">{eq[0]}</td>
+                                    <td class="border text-green-700 border-slate-700 ...">{eq[1]}</td>
+                                </tr>
+                            ))
+                }
+            </tbody>
+           </table>:<div/>
+          }
+        </DialogContent>
+        
+        <DialogActions>
+          <Button onClick={handleToClose} 
+                  color="primary" autoFocus>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

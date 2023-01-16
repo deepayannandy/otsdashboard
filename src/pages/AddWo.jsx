@@ -6,6 +6,11 @@ import Select from 'react-select';
 
 const AddWO = () => {
     const navigate = useNavigate();
+    useEffect(()=>{
+        if (!localStorage.getItem('userinfo')){
+          navigate('/Login');
+        }
+        })
     const potype=["T&M", "Lumpsum", "MSA", "DailyTimesheet", "Callout", "Others"]
     const costcenters=[ "Pasadena, TX 77506","Nederland, TX 77627","Snyder, TX 79549","Angleton, TX 77515","Port Lavaca, TX 77979"]
     const [errormessage,setErrormessage]=useState("");
@@ -46,7 +51,7 @@ const AddWO = () => {
     axios.get("https://tilapi.pocsofclients.com/api/user/dashboardUserState/getall").then((response)=>{
         let freeworker=[]
         for (let client in response.data){
-            if (response.data[client].desig=="Employee" && response.data[client].projid=="" && response.data[client].empBranch==scostcenter){
+            if (response.data[client].desig=="Employee" && response.data[client].projid=="" && response.data[client].active && response.data[client].empBranch==scostcenter){
                 freeworker.push({ value: response.data[client]._id, label: response.data[client].fullname },)
             }
         }
@@ -108,7 +113,7 @@ const AddWO = () => {
         axios.post('https://tilapi.pocsofclients.com/api/wo/', recievedData, {
         headers: { 'Content-type': 'application/json; charset=UTF-8','auth-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzlhNDRmNjFmN2Y0MjMyMGIwOWY1MjQiLCJkZXNpZyI6Ik1hbmFnZXIiLCJpYXQiOjE2NzEwNTQ2NDJ9.wftzYTqVIB_ACxuj0WEiVOJozJoQAx8ek3AjlG_TY5I" }
         }).then((data) => {
-            navigate('/pocsof/clients/tier1integrity/WO');
+            navigate('/WO');
         }).catch((error)=>{
             if(error.response){
                 // console.log(error.response.data);
@@ -122,7 +127,7 @@ const AddWO = () => {
 
     }
     const navigatetonewcustomer=()=>{
-        navigate('/pocsof/clients/tier1integrity/addnewcustomer');
+        navigate('/addnewcustomer');
     }
     const addworkerinlist =(e)=>{
     let ids=[]
@@ -188,7 +193,7 @@ return (
         <button class="bg-green-500 mt-2 mb-1 hover:bg-green-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " onClick={navigatetonewcustomer}>Add New #PO</button>
         <br/>
         <span className='text-gray-500 text-xs mb-10'>
-            * In case of a new PO# ploease register the PO first. 
+            * In case of a new PO# please register the PO first. 
         </span>
         <div className='bg-white shadow rounded mt-5 px-8 pt-6 pb-8 mb-4'>
             <form onSubmit={handleSubmit} className=" mt-10">
@@ -228,8 +233,8 @@ return (
             <label class="block text-gray-700 text-sm font-bold mb-2">Add Employees</label>
             <Select isClearable isMulti name="workers" options={workerList} onChange={addworkerinlist} className="basic-multi-select" classNamePrefix="select"/>
             <div className='h-2'/>
-            <label class="block text-gray-700 text-sm font-bold mb-2">Job Description</label>
-            <textarea name="description" placeholder="Job Description" className="shadow appearance-none border border-grey-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"/>
+            <label class="block text-gray-700 text-sm font-bold mb-2">Job Title</label>
+            <textarea name="JT" placeholder="Job Title" className="shadow appearance-none border border-grey-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"/>
             <div className='h-2'/>
             <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
@@ -251,16 +256,14 @@ return (
             <div className='h-2'/>
             <table className="border-collapse border border-slate-500 w-full">
                 <thead>
-                    <th class="border border-slate-600 ">Equipement ID</th>
-                    <th class="border border-slate-600 ">Quantity</th>
                     <th class="border border-slate-600 ">Equipement Name</th>
+                    <th class="border border-slate-600 ">Quantity</th>
                 </thead>
                 <tbody>
                 { selectedequip.map((eq)=>(
                                     <tr>
-                                        <td class="border border-slate-700 ...">{eq[0]}</td>
+                                        <td class="border text-blue-600 border-slate-700 ..."><a target="_blank" rel="noopener noreferrer" href={'https://tier1integrity.pocsofclients.com/EquipProfile?id='+eq[0]}>{eq[2]}</a></td>
                                         <td class="border border-slate-700 ...">{eq[1]}</td>
-                                        <td class="border border-slate-700 ...">{eq[2]}</td>
                                     </tr>
                                 ))
                     }
@@ -287,16 +290,14 @@ return (
             <div className='h-2'/>
             <table className="border-collapse border border-slate-500 w-full">
                 <thead>
-                    <th class="border border-slate-600 ">Consumable ID</th>
-                    <th class="border border-slate-600 ">Quantity</th>
                     <th class="border border-slate-600 ">Consumable Name</th>
+                    <th class="border border-slate-600 ">Quantity</th>
                 </thead>
                 <tbody>
                 { selectconid.map((eq)=>(
                                     <tr>
-                                        <td class="border border-slate-700 ...">{eq[0]}</td>
+                                        <td class="border text-blue-600 border-slate-700 ..."><a target="_blank" rel="noopener noreferrer" href={'https://tier1integrity.pocsofclients.com/ConsProfile?id='+eq[0]}>{eq[2]}</a></td>
                                         <td class="border border-slate-700 ...">{eq[1]}</td>
-                                        <td class="border border-slate-700 ...">{eq[2]}</td>
                                     </tr>
                                 ))
                     }

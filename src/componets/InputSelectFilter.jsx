@@ -7,7 +7,7 @@ const InputSelectFilter = (props) => {
         {props.placeholder}
       </label>
       <div class="relative">
-        <input list="data" name={props.name} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"></input>
+        <input list="data" name={props.name} onChange={props.onChange} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"></input>
           <datalist id='data'>
             { props.options.map((option)=>(
                       <option>{option}</option>

@@ -2,7 +2,7 @@
   "name": "project_pocsof_dashboard",
   "version": "0.1.0",
   "proxy": "",
-  "homepage": "https://ot-software.com/pocsof/clients/tier1integrity",
+  "homepage": "https://tier1intregrity.pocsofclients.com/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",
@@ -25,6 +25,7 @@
     "react-icons": "^4.3.1",
     "react-moment": "^1.1.2",
     "react-qr-code": "^2.0.11",
+    "react-qrcode-logo": "^2.8.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-select": "^5.7.0"

@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { BsCurrencyDollar } from 'react-icons/bs';
-import {GoPrimitiveDot} from 'react-icons/go';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
 import {Stacked,Pie, Button,  SparkLine, Footer, Chart} from "../componets";
-import { earningData, SparklineAreaData,stackedChartData,ecomPieChartData } from '../data/dummy';
-import { useStateContext } from '../contexts/ContextProvider';
 import axios, { Axios } from 'axios';
+import { useNavigate } from 'react-router-dom'
 import moment from "moment";
 import { DatePickerComponent } from '@syncfusion/ej2-react-calendars';
 
 
 const today=moment().format("YYYY-MM-DD")
 const Dashboard = () => {
-  console.log("hi");
-  
+  const navigate= useNavigate();
+  useEffect(()=>{
+    if (!localStorage.getItem('userinfo')){
+      console.log("try")
+      navigate('/Login');
+    }
+    })
   const[todaysdata,settodaysData]=useState("")
   const gettodaysdata= ()=>
   {
@@ -171,7 +173,7 @@ let [selectedDate, setselectedDate] = useState(today);
               <p className="font-semibold text-white text-2xl">Daily Onbording Status: {selectedDate} <DatePickerComponent width={1}  onChange={(date)=>{
                 console.log(date)
                 
-                const dateString=date.value.getUTCFullYear()+"-"+(date.value.getUTCMonth()+1)+"-"+date.value.getDate();
+                const dateString=date.value.getUTCFullYear()+"-"+("0" + (date.value.getUTCMonth()+1)).slice(-2)+"-"+date.value.getDate();
                 console.log(dateString);
                 setselectedDate(dateString);
                 axios.get("https://tilapi.pocsofclients.com/api/user/dashboardUserState/get/"+dateString).then((response)=>{

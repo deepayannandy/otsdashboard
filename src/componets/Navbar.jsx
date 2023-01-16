@@ -34,7 +34,7 @@ const Navbar = () => {
     <div className='flex justify-between p-2 md:mx-6 relative '> 
     <NavButton title="Menu" customFunc={()=>setActiveMenu((prevActiveState)=>!prevActiveState)} color="green" icon={<AiOutlineMenu/>}/>
     <div className='flex'>
-    <NavButton title="Menu" customFunc={()=>{}} color="green" icon={<BsSearch/>}/>
+    {/* <NavButton title="Menu" customFunc={()=>{}} color="green" icon={<BsSearch/>}/> */}
     <TooltipComponent content="Profile" position="BottomCenter">
           <div
             className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
